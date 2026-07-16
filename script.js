@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- GSAP DISABLED ON MOBILE ---
     if (isMobile) {
+        document.documentElement.classList.add("mobile-layout");
+        
         // Just handle basic mobile interactions if needed (Hamburger is handled via CSS/simple toggle below)
         const hamburger = document.querySelector(".hamburger");
         const navMenu = document.getElementById("nav-links");
@@ -55,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // =========================================
     // DESKTOP ONLY LOGIC BELOW
     // =========================================
+    document.documentElement.classList.remove("mobile-layout");
 
     // @ts-ignore
     if (typeof gsap !== "undefined") {
@@ -70,11 +73,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const cursor = document.getElementById("cursor");
 
     if (cursor) {
+        // Center the custom cursor
+        gsap.set(cursor, { xPercent: -50, yPercent: -50 });
+
         // Move cursor (optimized)
         const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         if (!reduceMotion) {
-            const setCursorX = gsap.quickTo(cursor, "x", { duration: 0.15, ease: "power2.out" });
-            const setCursorY = gsap.quickTo(cursor, "y", { duration: 0.15, ease: "power2.out" });
+            const setCursorX = gsap.quickTo(cursor, "x", { duration: 0.12, ease: "power2.out" });
+            const setCursorY = gsap.quickTo(cursor, "y", { duration: 0.12, ease: "power2.out" });
 
             let rafId = 0;
             let lastX = 0;
@@ -100,21 +106,36 @@ document.addEventListener("DOMContentLoaded", () => {
             el.addEventListener("mouseenter", () => {
                 gsap.to(cursor, {
                     scale: 3,
-                    backgroundColor: "rgba(100, 255, 218, 0.1)",
-                    border: "none",
-                    duration: 0.2
+                    backgroundColor: "oklch(68% 0.23 305 / 0.18)",
+                    borderColor: "var(--accent-sec)",
+                    duration: 0.25
                 });
             });
             el.addEventListener("mouseleave", () => {
                 gsap.to(cursor, {
                     scale: 1,
-                    backgroundColor: "transparent",
-                    border: "1px solid var(--accent)",
-                    duration: 0.2
+                    backgroundColor: "var(--accent-sec)",
+                    borderColor: "var(--accent)",
+                    duration: 0.25
                 });
             });
         });
     }
+
+    // --- Card Interactive Shine & Glow Effects ---
+    const glowCards = document.querySelectorAll(".project-card, .skill-item");
+    glowCards.forEach((card) => {
+        card.addEventListener("mousemove", (e) => {
+            // @ts-ignore
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            // @ts-ignore
+            card.style.setProperty("--mx", `${x}px`);
+            // @ts-ignore
+            card.style.setProperty("--my", `${y}px`);
+        });
+    });
 
     // --- SECTIONS & NAVIGATION ---
     /** @type {HTMLElement[]} */
@@ -139,6 +160,48 @@ document.addEventListener("DOMContentLoaded", () => {
     // @ts-ignore
     const gsapAny = gsap;
     /**
+     * Runs staggered entrance animations for the contents of a section.
+     * @param {HTMLElement} section
+     */
+    const animateEntrance = (section) => {
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduceMotion) return;
+
+        const tl = gsap.timeline();
+
+        // 1. Stagger animate title
+        const title = section.querySelector(".section-title");
+        if (title) {
+            tl.fromTo(title,
+                { opacity: 0, y: 30, filter: "blur(5px)" },
+                { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.65, ease: "power2.out" }
+            );
+        }
+
+        // 2. Stagger animate text contents / hero content
+        const texts = section.querySelectorAll(".about-text p, .hero-content > *, .contact-content > *");
+        const textsArray = Array.from(texts);
+        if (textsArray.length > 0) {
+            tl.fromTo(textsArray,
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.6, ease: "power2.out", stagger: 0.08 },
+                "-=0.45"
+            );
+        }
+
+        // 3. Stagger animate main visual items (grid items, cards, image containers)
+        const items = section.querySelectorAll(".skill-item, .project-card, .about-img, .hero-image-container");
+        const itemsArray = Array.from(items);
+        if (itemsArray.length > 0) {
+            tl.fromTo(itemsArray,
+                { opacity: 0, y: 35, scale: 0.95 },
+                { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "back.out(1.2)", stagger: 0.06 },
+                "-=0.4"
+            );
+        }
+    };
+
+    /**
      * Transitions between sections.
      * @param {number} index - The index of the target section.
      * @param {string} direction - The direction of animation ("up" or "down").
@@ -151,15 +214,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const nextSection = sections[index];
 
         const tl = gsap.timeline({
-            defaults: { duration: 1, ease: "power3.inOut" },
+            defaults: { duration: 1, ease: "power4.inOut" },
             onComplete: () => {
                 isAnimating = false;
                 currentIndex = index;
+                animateEntrance(nextSection);
             }
         });
 
         // Standard fade transition
-        const yOffset = 50;
+        const yOffset = 60;
 
         // Out
         tl.to(currentSection, {
@@ -216,43 +280,20 @@ document.addEventListener("DOMContentLoaded", () => {
         sections.forEach((sec, i) => {
             if (i === startIndex) {
                 gsap.set(sec, { opacity: 1, visibility: "visible", y: 0 });
-                // Entrance: make key elements start hidden, then animate in
-                if (!reduceMotion) {
-                    gsap.set(sec.querySelectorAll(".reveal, .reveal-item"), { opacity: 0, y: 18, filter: "blur(8px)" });
-                }
             } else {
                 gsap.set(sec, { opacity: 0, visibility: "hidden" });
             }
         });
 
-        // Hero Entrance (Desktop Only)
-        if (startIndex === 0 && !reduceMotion) {
+        // Header entrance animation
+        if (!reduceMotion) {
             const tl = gsap.timeline();
-            tl.from(".logo", { y: -30, opacity: 0, duration: 0.8, ease: "power2.out" })
-                .from(".nav-link", { y: -30, opacity: 0, duration: 0.8, stagger: 0.1 }, "-=0.6")
-                .from(".hero-content > *", { y: 20, opacity: 0, duration: 0.8, stagger: 0.1 }, "-=0.4")
-                .fromTo(".hero-img",
-                    { scale: 0.9, opacity: 0 },
-                    { scale: 1, opacity: 1, duration: 1, ease: "power2.out" },
-                    "-=0.6"
-                );
+            tl.from(".logo", { y: -30, opacity: 0, duration: 0.8, ease: "power3.out" })
+                .from(".nav-link", { y: -30, opacity: 0, duration: 0.8, stagger: 0.08, ease: "power3.out" }, "-=0.6");
         }
 
         // Animate reveal items for the active section (optional, adds premium feel)
-        if (!reduceMotion) {
-            const activeSection = sections[startIndex];
-            const items = activeSection.querySelectorAll(".reveal, .reveal-item");
-            if (items.length) {
-                gsap.to(items, {
-                    opacity: 1,
-                    y: 0,
-                    filter: "blur(0px)",
-                    duration: 0.9,
-                    ease: "power3.out",
-                    stagger: 0.06
-                });
-            }
-        }
+        animateEntrance(sections[startIndex]);
 
         updateNavigation(startIndex);
     };
