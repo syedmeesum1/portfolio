@@ -2,30 +2,30 @@
 
 @layer theme {
     :root {
-        /* Colors: OKLCH Standard 2026 */
-        /* Deep Obsidian Space Background */
-        --bg-color: oklch(12% 0.015 250);
-        /* Deep Indigo-Slate Glass */
-        --bg-light: oklch(18% 0.03 260);
+        /* Colors: OKLCH Standard 2026 - Black & Royal Blue */
+        /* Deep Obsidian Black Background */
+        --bg-color: oklch(8% 0.005 250);
+        /* Dark Indigo-Slate Charcoal Glass */
+        --bg-light: oklch(14% 0.015 250);
         /* Lighter Indigo-Slate for Hover Card/Surface */
-        --bg-lighter: oklch(24% 0.05 260);
+        --bg-lighter: oklch(20% 0.02 250);
 
         /* Typography Colors */
-        --text-primary: oklch(96% 0.01 250);
-        /* Muted lavender slate */
-        --text-secondary: oklch(82% 0.025 250);
+        --text-primary: oklch(97% 0.005 250);
+        /* Muted azure slate */
+        --text-secondary: oklch(84% 0.015 240);
 
-        /* Accent Primary: Nebula Purple */
-        --accent: oklch(68% 0.23 305);
-        --accent-dim: oklch(68% 0.23 305 / 0.15);
-        --accent-glow: oklch(68% 0.23 305 / 0.45);
+        /* Accent Primary: Royal Blue */
+        --accent: oklch(52% 0.22 250);
+        --accent-dim: oklch(52% 0.22 250 / 0.15);
+        --accent-glow: oklch(52% 0.22 250 / 0.45);
 
-        /* Accent Secondary: Neon Teal */
-        --accent-sec: oklch(80% 0.15 180);
-        --accent-sec-dim: oklch(80% 0.15 180 / 0.15);
-        --accent-sec-glow: oklch(80% 0.15 180 / 0.45);
+        /* Accent Secondary: Bright Electric Azure */
+        --accent-sec: oklch(72% 0.16 215);
+        --accent-sec-dim: oklch(72% 0.16 215 / 0.15);
+        --accent-sec-glow: oklch(72% 0.16 215 / 0.45);
 
-        --scroll-thumb: oklch(35% 0.04 260);
+        --scroll-thumb: oklch(28% 0.02 250);
 
         --nav-height: 100px;
 
@@ -36,16 +36,16 @@
         --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
         /* Modern Glassmorphism Variables */
-        --glass-bg: oklch(12% 0.015 250 / 0.7);
-        --glass-border: 1px solid oklch(96% 0.01 250 / 0.06);
+        --glass-bg: oklch(8% 0.005 250 / 0.7);
+        --glass-border: 1px solid oklch(97% 0.005 250 / 0.05);
         --glass-blur: blur(20px);
-        --glass-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
+        --glass-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.6);
 
         /* Gradients */
         --gradient-text: linear-gradient(135deg, var(--accent) 0%, var(--accent-sec) 100%);
         --gradient-bg:
-            radial-gradient(circle at 15% 15%, oklch(20% 0.08 300 / 0.35) 0%, transparent 60%),
-            radial-gradient(circle at 85% 85%, oklch(20% 0.08 180 / 0.35) 0%, transparent 60%);
+            radial-gradient(circle at 15% 15%, oklch(22% 0.1 250 / 0.3) 0%, transparent 60%),
+            radial-gradient(circle at 85% 85%, oklch(22% 0.1 215 / 0.3) 0%, transparent 60%);
 
         /* Spacing System */
         --space-xs: 0.5rem;
@@ -92,9 +92,9 @@ body {
         z-index: -1;
         pointer-events: none;
         background:
-            radial-gradient(circle at 20% 30%, oklch(68% 0.23 305 / 0.14), transparent 50%),
-            radial-gradient(circle at 80% 70%, oklch(80% 0.15 180 / 0.12), transparent 50%),
-            radial-gradient(circle at 50% 50%, oklch(60% 0.18 270 / 0.08), transparent 60%);
+            radial-gradient(circle at 20% 30%, oklch(52% 0.22 250 / 0.15), transparent 50%),
+            radial-gradient(circle at 80% 70%, oklch(72% 0.16 215 / 0.12), transparent 50%),
+            radial-gradient(circle at 50% 50%, oklch(40% 0.18 260 / 0.08), transparent 60%);
         filter: blur(60px);
         opacity: 0.95;
         transform: translate3d(0, 0, 0);
