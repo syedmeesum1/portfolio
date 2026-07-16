@@ -1,0 +1,2 @@
+Backup marker: no file created from prior state automatically.
+If you need manual rollback, use Git/VSCode local history or re-copy original index.html/style.css/script.js.

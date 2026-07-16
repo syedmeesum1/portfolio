@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // @ts-ignore
     if (typeof gsap !== "undefined") {
+        // @ts-ignore
         gsap.registerPlugin(ScrollTrigger, Observer, ScrollToPlugin);
     } else {
         console.error("GSAP not loaded");
@@ -69,15 +70,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const cursor = document.getElementById("cursor");
 
     if (cursor) {
-        // Move cursor
-        document.addEventListener("mousemove", (e) => {
-            gsap.to(cursor, {
-                x: e.clientX,
-                y: e.clientY,
-                duration: 0.1,
-                ease: "power2.out"
-            });
-        });
+        // Move cursor (optimized)
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (!reduceMotion) {
+            const setCursorX = gsap.quickTo(cursor, "x", { duration: 0.15, ease: "power2.out" });
+            const setCursorY = gsap.quickTo(cursor, "y", { duration: 0.15, ease: "power2.out" });
+
+            let rafId = 0;
+            let lastX = 0;
+            let lastY = 0;
+
+            document.addEventListener("mousemove", (e) => {
+                lastX = e.clientX;
+                lastY = e.clientY;
+                if (rafId) return;
+                rafId = window.requestAnimationFrame(() => {
+                    rafId = 0;
+                    setCursorX(lastX);
+                    setCursorY(lastY);
+                });
+            }, { passive: true });
+        }
 
         // Hover effects
         /** @type {NodeListOf<HTMLElement>} */
@@ -122,6 +135,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let isAnimating = false;
 
     // --- ANIMATION CONTROLLER ---
+    /** @type {any} */
+    // @ts-ignore
+    const gsapAny = gsap;
     /**
      * Transitions between sections.
      * @param {number} index - The index of the target section.
@@ -194,17 +210,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
         currentIndex = startIndex;
 
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
         // Desktop: Initial GSAP State (Hidden/Visible)
         sections.forEach((sec, i) => {
             if (i === startIndex) {
                 gsap.set(sec, { opacity: 1, visibility: "visible", y: 0 });
+                // Entrance: make key elements start hidden, then animate in
+                if (!reduceMotion) {
+                    gsap.set(sec.querySelectorAll(".reveal, .reveal-item"), { opacity: 0, y: 18, filter: "blur(8px)" });
+                }
             } else {
                 gsap.set(sec, { opacity: 0, visibility: "hidden" });
             }
         });
 
         // Hero Entrance (Desktop Only)
-        if (startIndex === 0) {
+        if (startIndex === 0 && !reduceMotion) {
             const tl = gsap.timeline();
             tl.from(".logo", { y: -30, opacity: 0, duration: 0.8, ease: "power2.out" })
                 .from(".nav-link", { y: -30, opacity: 0, duration: 0.8, stagger: 0.1 }, "-=0.6")
@@ -214,6 +236,22 @@ document.addEventListener("DOMContentLoaded", () => {
                     { scale: 1, opacity: 1, duration: 1, ease: "power2.out" },
                     "-=0.6"
                 );
+        }
+
+        // Animate reveal items for the active section (optional, adds premium feel)
+        if (!reduceMotion) {
+            const activeSection = sections[startIndex];
+            const items = activeSection.querySelectorAll(".reveal, .reveal-item");
+            if (items.length) {
+                gsap.to(items, {
+                    opacity: 1,
+                    y: 0,
+                    filter: "blur(0px)",
+                    duration: 0.9,
+                    ease: "power3.out",
+                    stagger: 0.06
+                });
+            }
         }
 
         updateNavigation(startIndex);

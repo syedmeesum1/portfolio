@@ -1,0 +1,2 @@
+Backup marker. If you need rollback, use VSCode local history or restore from git/local history.
+

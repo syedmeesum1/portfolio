@@ -65,7 +65,7 @@
 }
 
 @layer base {
-    body {
+body {
         background-color: var(--bg-color);
         color: var(--text-primary);
         font-family: var(--font-main);
@@ -76,6 +76,33 @@
         width: 100%;
         background-image: var(--gradient-bg);
         background-attachment: fixed;
+        position: relative;
+    }
+
+    /* Animated background overlay (CSS-only; cheap) */
+    body::before {
+        content: "";
+        position: fixed;
+        inset: -20%;
+        z-index: -1;
+        pointer-events: none;
+        background:
+            radial-gradient(circle at 15% 20%, rgba(100, 255, 218, 0.18), transparent 40%),
+            radial-gradient(circle at 85% 70%, rgba(140, 120, 255, 0.14), transparent 40%),
+            linear-gradient(120deg, rgba(100, 255, 218, 0.06), rgba(255, 255, 255, 0) 55%);
+        filter: blur(18px);
+        opacity: 0.85;
+        transform: translate3d(0, 0, 0);
+        animation: bg-drift 10s ease-in-out infinite alternate;
+    }
+
+    @keyframes bg-drift {
+        0% { transform: translate3d(-1.5%, -1%, 0) scale(1.02); }
+        100% { transform: translate3d(1.5%, 1%, 0) scale(1.06); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        body::before { animation: none !important; }
     }
 
     /* Selection Color */
@@ -112,7 +139,7 @@
 @layer components {
 
     /* Custom Cursor */
-    #cursor {
+#cursor {
         width: 20px;
         height: 20px;
         border: 1px solid var(--accent);
@@ -123,6 +150,11 @@
         z-index: 9999;
         transition: transform 0.15s ease-out, background-color 0.2s;
         /* mix-blend-mode: difference; Removed for better visibility on dark bg */
+        will-change: transform;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        #cursor { display: none; }
     }
 
     /* Navbar */
@@ -277,7 +309,7 @@
         container-type: inline-size;
     }
 
-    section {
+section {
         position: absolute;
         inset: 0;
         width: 100%;
@@ -316,6 +348,25 @@
         &#contact {
             z-index: 5;
         }
+    }
+
+    /* Reveal helpers (JS/GSAP will animate from these values) */
+    .reveal {
+        opacity: 0;
+        transform: translate3d(0, 18px, 0);
+        filter: blur(6px);
+        transition: none;
+        will-change: transform, opacity, filter;
+    }
+
+    .reveal.is-visible {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        filter: blur(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
     }
 
     .section-title {
@@ -539,7 +590,7 @@
             background: var(--accent);
         }
 
-        & .project-card {
+& .project-card {
             flex: 0 0 max(350px, 30vw);
             min-height: 450px;
             scroll-snap-align: center;
@@ -551,11 +602,30 @@
             border: 1px solid transparent;
             display: flex;
             flex-direction: column;
+            isolation: isolate;
+
+            /* Shine overlay */
+            &::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                border-radius: 16px;
+                background:
+                    radial-gradient(400px circle at var(--mx, 30%) var(--my, 20%), rgba(100, 255, 218, 0.22), transparent 55%),
+                    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 45%);
+                opacity: 0;
+                transition: opacity 0.25s ease;
+                z-index: -1;
+            }
 
             &:hover {
                 border-color: var(--accent);
                 transform: translateY(-10px);
                 background: linear-gradient(145deg, var(--bg-light) 0%, oklch(30% 0.1 265) 100%);
+            
+                &::before {
+                    opacity: 1;
+                }
             }
 
             & .project-overline {
