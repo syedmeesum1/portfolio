@@ -4,308 +4,363 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mesum | Software Engineer & Designer</title>
-    <meta name="description"
-        content="Portfolio of Mesum - Software Engineer specializing in accessible, human-centered digital experiences.">
-
-    <!-- Preload Critical Resources -->
-    <link rel="stylesheet" href="style.css?v=4">
-    <link rel="preload" as="image" href="about-page.webp">
+    <title>Syed Messum Abbas Hasni | Portfolio</title>
+    <link rel="shortcut icon" href="loogo.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css?v=9">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" type="image/webp" href="logo.webp">
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-    <!-- Custom Cursor -->
-    <div id="cursor"></div>
-
-    <nav class="navbar" aria-label="Main Navigation">
-        <div class="logo">
-            <img src="loogo.png" alt="Mesum Logo" class="nav-logo-img" width="50" height="50">
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="#home" class="logo">
+                <img src="design_a_logo_of_smah_for_portfolio_webs-removebg-preview.png" alt="SMAH Logo">
+            </a>
         </div>
-        <ul class="nav-links" id="nav-links">
-            <li><a href="#about" class="nav-link">About</a></li>
-            <li><a href="#skills" class="nav-link">Skills</a></li>
-            <li><a href="#projects" class="nav-link">Work</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
-        <button type="button" class="hamburger" aria-label="Toggle navigation" aria-controls="nav-links"
-            aria-expanded="false">
-            <span class="line"></span>
-            <span class="line"></span>
-            <span class="line"></span>
-        </button>
+        <div class="nav-center-pill" id="nav-menu">
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contacts</a></li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <a href="#contact" class="btn-nav">Get Started</a>
+            <div class="hamburger" id="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
     </nav>
 
-    <main>
-        <section id="hero" aria-labelledby="hero-name">
-            <div class="hero-grid-container">
-                <div class="hero-content">
-                    <p class="hi">Hi, my name is</p>
-                    <h1 id="hero-name" class="name">Syed Messum Abbas Hasni.</h1>
-                    <h2 class="tagline">I build things for the web.</h2>
-                    <p class="bio-short">
-                        I am a software engineer specializing in building (and occasionally designing) exceptional
-                        digital experiences.
-                        I focus on creating accessible, human-centered products.
-                    </p>
-                    <!-- <a href="#projects" class="cta-btn">Check out my work!</a> -->
-                </div>
-                <div class="hero-image-container">
-                    <img src="about-page.webp" alt="Portrait of Mesum Abbas" class="hero-img" width="450" height="450">
-                </div>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Hello <span class="dot">.</span></h1>
+            <div class="intro-line">
+                <span class="line"></span>
+                <h2>I'm Syed Messum</h2>
             </div>
-        </section>
-
-        <section id="about" class="section" aria-labelledby="about-title">
-            <h2 id="about-title" class="section-title">About Me</h2>
-            <div class="about-content">
-                <article class="about-text">
-                    <p>
-                        Hello! My name is Mesum Abbas Hasni and I enjoy creating things that live on the internet.
-                        My interest in web development started back when I decided to try editing some themes — turns
-                        out hacking together HTML & CSS is pretty much fun!
-                    </p>
-                    <p>
-                        Fast-forward to today, and I've had the privilege of working on various projects.
-                        My main focus these days is building accessible, inclusive products and digital experiences.
-                    </p>
-                    <div class="button-group">
-                        <a href="Mesam-CV.pdf" target="_blank" class="resume-btn about-resume-btn">View Resume</a>
-                        <a href="#projects" class="resume-btn about-resume-btn work-btn-alt">My Work</a>
+            <h3>Web Developer & DevOps Engineer</h3>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn primary">Got a project?</a>
+                <a href="Mesam's CV.pdf" class="btn secondary" target="_blank">My resume</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="image-wrapper flip-container">
+                <div class="flipper">
+                    <!-- Front Image -->
+                    <div class="front">
+                        <img src="1st img.webp" alt="Syed Messum Abbas Hasni">
                     </div>
-                </article>
-                <div class="about-img">
-                    <figure class="img-container">
-                        <img src="mesum-profile.webp" alt="Mesum Abbas" class="about-profile-img" width="300"
-                            height="300" loading="lazy">
-                    </figure>
+                    <!-- Back Image -->
+                    <div class="back">
+                        <img src="2nd img.webp" alt="Syed Messum Hover">
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="skills" class="section" aria-labelledby="skills-title">
-            <h2 id="skills-title" class="section-title">Technical Skills</h2>
-            <ul class="skills-grid">
-                <li class="skill-item" aria-label="Python">
-                    <i class="fab fa-python" aria-hidden="true"></i>
-                    <span>Python</span>
-                </li>
-                <li class="skill-item" aria-label="JavaScript">
-                    <i class="fab fa-js" aria-hidden="true"></i>
-                    <span>JavaScript</span>
-                </li>
-                <li class="skill-item" aria-label="HTML5 and CSS3">
-                    <i class="fab fa-html5" aria-hidden="true"></i>
-                    <span>HTML5 & CSS3</span>
-                </li>
-                <li class="skill-item" aria-label="React">
-                    <i class="fab fa-react" aria-hidden="true"></i>
-                    <span>React</span>
-                </li>
-                <li class="skill-item" aria-label="SQL">
-                    <i class="fas fa-database" aria-hidden="true"></i>
-                    <span>SQL</span>
-                </li>
-                <li class="skill-item" aria-label="Git Version Control">
-                    <i class="fab fa-git-alt" aria-hidden="true"></i>
-                    <span>Git</span>
-                </li>
-                <li class="skill-item" aria-label="WordPress">
-                    <i class="fab fa-wordpress" aria-hidden="true"></i>
-                    <span>WordPress</span>
-                </li>
-                <li class="skill-item" aria-label="cPanel Management">
-                    <i class="fab fa-cpanel" aria-hidden="true"></i>
-                    <span>cPanel</span>
-                </li>
-                <li class="skill-item" aria-label="Moodle Management">
-                    <i class="fas fa-graduation-cap" aria-hidden="true"></i>
-                    <span>Moodle</span>
-                </li>
-                <li class="skill-item" aria-label="Networking">
-                    <i class="fas fa-network-wired" aria-hidden="true"></i>
-                    <span>Networking</span>
-                </li>
-            </ul>
-        </section>
+    <section class="tech-stack">
+        <div class="marquee-content">
+            <span>HTML5</span>
+            <span>CSS</span>
+            <span>TailwindCSS</span>
+            <span>Javascript</span>
+            <span>Node.js</span>
+            <span>React</span>
+            <span>Git</span>
+            <span>Github</span>
+            <span>Linux</span>
+            <span>CI/CD</span>
+            <span>Next.js</span>
+            <!-- Duplicate content for seamless scrolling -->
+            <span>HTML5</span>
+            <span>CSS</span>
+            <span>TailwindCSS</span>
+            <span>Javascript</span>
+            <span>Node.js</span>
+            <span>React</span>
+            <span>Git</span>
+            <span>Github</span>
+            <span>Linux</span>
+            <span>CI/CD</span>
+            <span>Next.js</span>
+        </div>
+    </section>
 
-        <section id="projects" class="section" aria-labelledby="projects-title">
-            <h2 id="projects-title" class="section-title">Some Things I've Built</h2>
-            <div class="projects-container">
+    <section id="about" class="about">
+        <div class="about-services">
+            <div class="service-item">
+                <i class="fa-solid fa-code"></i>
+                <span>Frontend & Web</span>
+            </div>
+            <div class="service-item">
+                <i class="fa-solid fa-server"></i>
+                <span>DevOps & Infrastructure</span>
+            </div>
+            <div class="service-item">
+                <i class="fa-brands fa-wordpress"></i>
+                <span>CMS & LMS Platforms</span>
+            </div>
+        </div>
+        <div class="about-content">
+            <h2>About me</h2>
+            <p>Dynamic Web Developer, WordPress Specialist, and DevOps Engineer experienced in building high-performance
+                frontend interfaces and managing secure cloud infrastructure. Skilled in administering LMS/CMS platforms
+                (Moodle & WordPress), optimizing server environments, and deploying automated CI/CD pipelines. Focused
+                on delivering scalable, secure, and user-centric web solutions.</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <h3>20 <span class="plus">+</span></h3>
+                    <p>Completed<br>Projects</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100 <span class="percent">%</span></h3>
+                    <p>Client<br>satisfaction</p>
+                </div>
+                <div class="stat-item">
+                    <h3>3 <span class="plus">+</span></h3>
+                    <p>Years of<br>experience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2>Projects</h2>
+        <div class="project-line"></div>
+
+        <div class="projects-grid">
+            <!-- Left Side: Deploy Projects -->
+            <div class="projects-column">
+                <h3 class="column-heading">Deploy Projects</h3>
+                
+                <div class="projects-slider">
                 <!-- Project 1 -->
-                <article class="project-card">
-                    <div class="project-content">
-                        <p class="project-overline">Corporate Portal</p>
-                        <h3 class="project-title">NMZ Associates</h3>
-                        <div class="project-desc">
-                            <p>A professional business website for a global textile and apparel sourcing group. The site
-                                serves as a "one-door solution" hub, featuring a structured digital showroom and client
-                                portfolio showcases.</p>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Techmire Solutions</h3>
+                        <div class="tech-pills">
+                            <span>Frontend Leadership</span>
+                            <span>CI/CD</span>
+                            <span>Servers</span>
                         </div>
-                        <ul class="project-tech" aria-label="Technologies used">
-                            <li>Corporate</li>
-                            <li>Web Design</li>
-                            <li>Sourcing</li>
-                        </ul>
+                        <p>Lead Web Developer & DevOps Engineer. Transitioned deployment workflows from traditional
+                            webhooks to automated GitHub Actions. Managed timelines, technical requirements, and teams
+                            for complex e-commerce platforms.</p>
                         <div class="project-links">
-                            <a href="https://nmzassociates.com/" target="_blank"
-                                aria-label="Visit NMZ Associates Website"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="https://techmiresolutions.com/" class="specular-button" target="_blank">
+                                <span class="specular-button__fx" aria-hidden="true"></span>
+                                <span class="specular-button__label">Visit Project <i
+                                        class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                            </a>
                         </div>
                     </div>
-                </article>
+                </div>
 
                 <!-- Project 2 -->
-                <article class="project-card">
-                    <div class="project-content">
-                        <p class="project-overline">E-Commerce Platform</p>
-                        <h3 class="project-title">World Mart Imports</h3>
-                        <div class="project-desc">
-                            <p>A fully functional online retail platform specializing in mobile accessories. Features a
-                                robust catalog, secure auth, and dynamic wishlist functionality.</p>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Techmire Solutions Moodle</h3>
+                        <div class="tech-pills">
+                            <span>Moodle</span>
+                            <span>PHP</span>
+                            <span>MySQL</span>
                         </div>
-                        <ul class="project-tech" aria-label="Technologies used">
-                            <li>E-Commerce</li>
-                            <li>Web Design</li>
-                            <li>Responsive</li>
-                        </ul>
+                        <p>A comprehensive Learning Management System (LMS) tailored for efficient course delivery with
+                            real-time progress tracking.</p>
                         <div class="project-links">
-                            <a href="https://worldmartimports.com/" target="_blank"
-                                aria-label="Visit World Mart Imports Website"><i
-                                    class="fas fa-external-link-alt"></i></a>
+                            <a href="https://edu.techmiresolutions.com/" class="specular-button" target="_blank">
+                                <span class="specular-button__fx" aria-hidden="true"></span>
+                                <span class="specular-button__label">Visit Project <i
+                                        class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                            </a>
                         </div>
                     </div>
-                </article>
+                </div>
 
-                <!-- Project 3 -->
-                <article class="project-card">
-                    <div class="project-content">
-                        <p class="project-overline">LMS Platform</p>
-                        <h3 class="project-title">Techmire Solutions Moodle</h3>
-                        <div class="project-desc">
-                            <p>A comprehensive Learning Management System (LMS) tailored for efficient course delivery
-                                with real-time progress tracking.</p>
-                        </div>
-                        <ul class="project-tech" aria-label="Technologies used">
-                            <li>Moodle</li>
-                            <li>PHP</li>
-                            <li>MySQL</li>
-                        </ul>
-                        <div class="project-links">
-                            <a href="https://edu.techmiresolutions.com" target="_blank"
-                                aria-label="Visit Techmire LMS"><i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </div>
-                </article>
+                <!-- Project 3-->
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>CGplux Studios</h3>
+                        <div class="tech-pills">
+                            <span>Next.js</span>
+                            <span>Sanity</span>
+                            <span>CI/CD</span>
+                            <span>Linux</span>
 
-                <!-- Project 4 -->
-                <article class="project-card">
-                    <div class="project-content">
-                        <p class="project-overline">Web Application</p>
-                        <h3 class="project-title">Guess the Month Game</h3>
-                        <div class="project-desc">
-                            <p>An interactive web-based game challenging users to guess randomly selected months,
-                                showcasing DOM manipulation skills.</p>
-                        </div>
-                        <ul class="project-tech" aria-label="Technologies used">
-                            <li>HTML5</li>
-                            <li>CSS3</li>
-                            <li>JavaScript</li>
-                        </ul>
-                        <div class="project-links">
-                            <a href="https://syedmeesum1.github.io/Month-Game/index.html" target="_blank"
-                                aria-label="View Game"><i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </div>
-                </article>
 
-                <!-- Project 5 -->
-                <article class="project-card">
-                    <div class="project-content">
-                        <p class="project-overline">Virtual Assistant</p>
-                        <h3 class="project-title">JARVIS: Virtual Assistant</h3>
-                        <div class="project-desc">
-                            <p>A voice-controlled virtual assistant utilizing the Web Speech API for recognition and
-                                synthesis.</p>
                         </div>
-                        <ul class="project-tech" aria-label="Technologies used">
-                            <li>JavaScript</li>
-                            <li>Web Speech API</li>
-                            <li>Voice UX</li>
-                        </ul>
+                        <p>Deployed a modern agency website using Next.js and Sanity CMS. Optimized production builds
+                            and automated CI/CD pipelines for seamless updates and high performance.
+                        </p>
                         <div class="project-links">
-                            <a href="https://github.com/connectwithhassan/Jarvis_Assistant.git" target="_blank"
-                                aria-label="View JARVIS"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="https://cgpluxstudios.com/" class="specular-button" target="_blank">
+                                <span class="specular-button__fx" aria-hidden="true"></span>
+                                <span class="specular-button__label">Visit Project <i
+                                        class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                            </a>
                         </div>
                     </div>
-                </article>
+                </div>
 
-                <!-- Project 6 -->
-                <article class="project-card">
-                    <div class="project-content">
-                        <p class="project-overline">Full Stack Web App</p>
-                        <h3 class="project-title">AI Chat Bot</h3>
-                        <div class="project-desc">
-                            <p>A full-stack AI-powered chat interface with secure user authentication deployed on the
-                                Marvellous DevOps platform.</p>
+                <!--  Project 4  -->
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Aabtaab</h3>
+                        <div class="tech-pills">
+                            <span>Next.js</span>
+                            <span>Sanity CMS</span>
+                            <span>VPS</span>
                         </div>
-                        <ul class="project-tech" aria-label="Technologies used">
-                            <li>AI Integration</li>
-                            <li>User Auth</li>
-                            <li>Full Stack</li>
-                        </ul>
+                        <p>Deployed a full-stack Next.js and Sanity platform on a VPS server, implementing automated
+                            CI/CD pipelines for smooth, zero-downtime production updates.
                         <div class="project-links">
-                            <a href="https://marvellousdevops.com/" target="_blank"
-                                aria-label="Visit Marvellous DevOps"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="https://aabtaab.com/" class="specular-button" target="_blank">
+                                <span class="specular-button__fx" aria-hidden="true"></span>
+                                <span class="specular-button__label">Visit Project <i
+                                        class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                            </a>
                         </div>
                     </div>
-                </article>
+                </div>
+                </div>
+
             </div>
-        </section>
 
-        <section id="contact" class="section" aria-labelledby="contact-title">
-            <h2 id="contact-title" class="section-title">What's Next?</h2>
-            <div class="contact-content">
-                <h2 class="contact-head">Get In Touch</h2>
-                <p class="contact-text">
-                    I'm currently accessible for new opportunities. Whether you have a question or just want to say hi,
-                    I'll try my best to get back to you!
-                </p>
-                <a href="mailto:mesamabbas5321@gmail.com" class="cta-btn big-btn">Say Hello</a>
+            <!-- Right Side: Design Projects -->
+            <div class="projects-column">
+                <h3 class="column-heading">Desings Project</h3>
 
-                <ul class="social-links-contact">
-                    <li><a href="https://www.facebook.com/profile.php?id=61563337182532" target="_blank"
-                            aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a href="https://wa.me/923162098972" target="_blank" aria-label="WhatsApp"><i
-                                class="fab fa-whatsapp"></i></a></li>
-                    <li><a href="https://www.instagram.com/mesamxdd/" target="_blank" aria-label="Instagram"><i
-                                class="fab fa-instagram"></i></a></li>
-                    <li><a href="https://www.linkedin.com/in/mesamabbas12/" target="_blank" aria-label="LinkedIn"><i
-                                class="fab fa-linkedin-in"></i></a></li>
-                    <li><a href="https://github.com/syedmeesum1" target="_blank" aria-label="GitHub"><i
-                                class="fab fa-github"></i></a></li>
-                </ul>
+                <div class="projects-slider">
+                <!-- Project 1-->
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Apparel Textile Services</h3>
+                        <div class="tech-pills">
+                            <span>Static Website</span>
+                            <span>B2B Brand</span>
+                            <span>Apparel</span>
+                        </div>
+                        <p>A completely static, professional website built for a clothing brand that specializes in
+                            providing bulk apparel and textile services. The platform is designed to effectively present
+                            their bulk offerings to potential B2B.</p>
+                        <div class="project-links">
+                            <a href="https://appareltextileservices.com/" class="specular-button" target="_blank">
+                                <span class="specular-button__fx" aria-hidden="true"></span>
+                                <span class="specular-button__label">Visit Project <i
+                                        class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DProject 2-->
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Danish o Ramish</h3>
+                        <div class="tech-pills">
+                            <span>React.js</span>
+                            <span>Static Website</span>
+                            <span>Responsive</span>
+                        </div>
+                        <p>Developed a high-performance static website using React.js, featuring modular components and
+                            a smooth, fully responsive layout across all screens.</p>
+                        <div class="project-links">
+                            <a href="https://danishoramish.com/" class="specular-button" target="_blank">
+                                <span class="specular-button__fx" aria-hidden="true"></span>
+                                <span class="specular-button__label">Visit Project <i
+                                        class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Demo Project 4 -->
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>True North Garage Doors</h3>
+                        <div class="tech-pills">
+                            <span>WordPress</span>
+                            <span>Custom Theme</span>
+                            <span>Responsive</span>
+                        </div>
+                        <p>Complete redesign of a complex analytics dashboard, improving data visualization and user
+                            engagement through a cleaner, more accessible layout.</p>
+                        <div class="project-links">
+                            <a href="https://truenorthgaragedoorsmi.com/" class="specular-button" target="_blank">
+                                <span class="specular-button__fx" aria-hidden="true"></span>
+                                <span class="specular-button__label">Visit Project <i
+                                        class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                </div>
             </div>
-        </section>
-    </main>
+        </div>
+
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="contact-header">
+            <span>Contacts</span>
+            <h2>Have a project?<br>Let's talk!</h2>
+        </div>
+        <div class="contact-form">
+            <form action="https://formsubmit.co/syedmesam.tms@gmail.com" method="POST">
+                <!-- Disable Captcha (Optional, for better UX) -->
+                <input type="hidden" name="_captcha" value="false">
+                <!-- Success page redirect (Optional, right now it shows a default success page) -->
+                
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <textarea name="message" placeholder="Message" rows="4" required></textarea>
+                <button type="submit" class="btn primary submit-btn">Submit</button>
+            </form>
+        </div>
+    </section>
 
     <footer>
-        <p>Built by Mesum</p>
+        <div class="footer-logo">
+            <img src="design_a_logo_of_smah_for_portfolio_webs-removebg-preview.png" alt="SMAH Logo">
+        </div>
+        <h3>Syed Messum Abbas Hasni</h3>
+        <p>Designed with love, all right reserved for Syed Messum Abbas Hasni.</p>
+        <div class="socials">
+            <a href="mailto:mesamabbas5321@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://github.com/syedmeesum1" target="_blank"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/mesamabbas12/" target="_blank"><i
+                    class="fa-brands fa-linkedin"></i></a>
+            <a href="https://wa.me/923162098972" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
     </footer>
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
 
-    <!-- GSAP Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Observer.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
-    <script src="script.js?v=4"></script>
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+
+    </script>
+    <script type="module" src="specularButton.js"></script>
 </body>
-
 
 </html>
