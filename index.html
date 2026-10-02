@@ -220,7 +220,7 @@
                             <span>VPS</span>
                         </div>
                         <p>Deployed a full-stack Next.js and Sanity platform on a VPS server, implementing automated
-                            CI/CD pipelines for smooth, zero-downtime production updates.
+                            CI/CD pipelines for smooth, zero-downtime production updates.</p>
                         <div class="project-links">
                             <a href="https://aabtaab.com/" class="specular-button" target="_blank">
                                 <span class="specular-button__fx" aria-hidden="true"></span>
@@ -230,6 +230,13 @@
                         </div>
                     </div>
                 </div>
+                </div>
+                
+                <div class="slider-dots">
+                    <span class="dot-slider active"></span>
+                    <span class="dot-slider"></span>
+                    <span class="dot-slider"></span>
+                    <span class="dot-slider"></span>
                 </div>
 
             </div>
@@ -303,6 +310,12 @@
                     </div>
                 </div>
                 </div>
+                
+                <div class="slider-dots">
+                    <span class="dot-slider active"></span>
+                    <span class="dot-slider"></span>
+                    <span class="dot-slider"></span>
+                </div>
             </div>
         </div>
 
@@ -356,6 +369,47 @@
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
                 hamburger.classList.remove('active');
+            });
+        });
+
+        // Slider dots logic
+        document.querySelectorAll('.projects-column').forEach(column => {
+            const slider = column.querySelector('.projects-slider');
+            const dots = column.querySelectorAll('.dot-slider');
+            
+            if (!slider || dots.length === 0) return;
+
+            const updateDots = () => {
+                const scrollLeft = slider.scrollLeft;
+                const card = slider.querySelector('.project-card');
+                const gap = parseInt(window.getComputedStyle(slider).gap) || 0;
+                const cardWidth = card.offsetWidth + gap;
+                const index = Math.round(scrollLeft / cardWidth);
+                
+                dots.forEach(dot => dot.classList.remove('active'));
+                if(dots[index]) {
+                    dots[index].classList.add('active');
+                }
+            };
+
+            // Update dots on scroll
+            slider.addEventListener('scroll', updateDots);
+            
+            // Handle window resize
+            window.addEventListener('resize', updateDots);
+
+            // Click dots to scroll
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    const card = slider.querySelector('.project-card');
+                    const gap = parseInt(window.getComputedStyle(slider).gap) || 0;
+                    const cardWidth = card.offsetWidth + gap;
+                    
+                    slider.scrollTo({
+                        left: cardWidth * index,
+                        behavior: 'smooth'
+                    });
+                });
             });
         });
 
