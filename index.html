@@ -146,15 +146,15 @@
                 on delivering scalable, secure, and user-centric web solutions.</p>
             <div class="stats">
                 <div class="stat-item">
-                    <h3>20 <span class="plus">+</span></h3>
+                    <h3><span class="counter" data-target="20">0</span> <span class="plus">+</span></h3>
                     <p>Completed<br>Projects</p>
                 </div>
                 <div class="stat-item">
-                    <h3>100 <span class="percent">%</span></h3>
+                    <h3><span class="counter" data-target="100">0</span> <span class="percent">%</span></h3>
                     <p>Client<br>satisfaction</p>
                 </div>
                 <div class="stat-item">
-                    <h3>3 <span class="plus">+</span></h3>
+                    <h3><span class="counter" data-target="3">0</span> <span class="plus">+</span></h3>
                     <p>Years of<br>experience</p>
                 </div>
             </div>
@@ -624,6 +624,40 @@
                 document.body.style.overflow = "auto";
             }
         });
+
+        // Counter Animation Logic
+        const counters = document.querySelectorAll('.counter');
+        const counterObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    counters.forEach(counter => {
+                        const target = +counter.getAttribute('data-target');
+                        let count = 0;
+                        const duration = 2000; // ms
+                        const increment = target / (duration / 16); 
+
+                        const updateCount = () => {
+                            count += increment;
+                            if (count < target) {
+                                counter.innerText = Math.ceil(count);
+                                requestAnimationFrame(updateCount);
+                            } else {
+                                counter.innerText = target;
+                            }
+                        };
+                        updateCount();
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            counterObserver.observe(statsSection);
+        }
 
     </script>
     <script type="module" src="specularButton.js"></script>
